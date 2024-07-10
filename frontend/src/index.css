@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Catamaran";
   line-height: 1.5;
   font-weight: 400;
+  justify-content: center;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -25,12 +29,13 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
+  font-family: "Karla";
   font-size: 3.2em;
   line-height: 1.1;
 }
@@ -42,7 +47,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: grey;
   cursor: pointer;
   transition: border-color 0.25s;
 }
