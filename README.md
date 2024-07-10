@@ -29,14 +29,21 @@ blogapi-full-stack
 
 ## How to run the project
 You will need to install the node package manager using the following command:
-`npm install`
+```bash
+npm install
+```
 
 After this you can run the project by using the following command:
-`npm run dev` 
+```bash
+npm run dev
+```
+
 This will run the frontend and backend simulataneously. 
 
-Navigate to `localhost:<port_number>` to get to the home page
-
+Navigate to 
+```bash
+localhost:<port_number>
+```
 
 # Backend Model
-[Model](/BackendModel.png)
+![Model](/BackendModel.png)
