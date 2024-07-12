@@ -9,6 +9,10 @@ const UserSchema = new Schema({
   username: {type: String, required: true},
   password: {type: String, required: true},
   isAdmin: {type: Boolean, required: true},
+},
+{
+  toJSON: { virtuals: true }, //ensures virtual properties are included when converting to json
+  toObject: { virtuals: true },
 });
 
 // Virtual for user's URL

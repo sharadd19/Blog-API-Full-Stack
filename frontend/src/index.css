@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 
+
 :root {
   font-family: "Catamaran";
   line-height: 1.5;
@@ -15,6 +16,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  
 }
 
 a {
@@ -28,7 +34,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;

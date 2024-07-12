@@ -8,6 +8,10 @@ const CommentSchema = new Schema({
   description: { type: String, required: true, maxLength: 200 },
   date: {type: Date, required: true},
   author: {type: Schema.Types.ObjectId, ref: "User"},
+},
+{
+  toJSON: { virtuals: true }, //ensures virtual properties are included when converting to json
+  toObject: { virtuals: true },
 });
 
 // Virtual for comment's URL
