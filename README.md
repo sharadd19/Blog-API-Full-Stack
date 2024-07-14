@@ -15,7 +15,7 @@ The goal of this application is to build a full-stack application that allows us
 - MongoDB
 - Mongoose ODM
 
-# Key concepts and learnings
+## Key concepts and learnings
 - **Authentication** and **Authorisation** using **Passport JWT** to allow users to create
 an account, login and access protected routes depending on permissions
 - **Routing** in **React** and **NodeJS** to allow frontend and backend to communicate
