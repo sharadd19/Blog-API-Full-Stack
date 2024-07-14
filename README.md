@@ -1,6 +1,6 @@
 # Blog 
 
-
+**CURRENTLY IN DEVELOPMENT**
 
 ## Description 
 This project was part of one of the projects to complete in [_The Odin Project_](https://www.theodinproject.com/lessons/nodejs-blog-api) course for full-stack web development. 
@@ -56,7 +56,7 @@ blogapi-full-stack
 cd blogapi-full-stack
 ```
 
-3. Install the dependencies using node package manager:
+3. Install dependencies using node package manager:
 ```bash
 npm install
 ```
