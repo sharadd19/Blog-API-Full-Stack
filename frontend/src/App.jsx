@@ -24,7 +24,6 @@ function App() {
       return JSON.parse(text);
     } catch (error) {
       console.error("Error:", error);
-      alert(error);
     }
   }
   useEffect(() => {
