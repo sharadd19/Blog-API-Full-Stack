@@ -49,27 +49,32 @@ blogapi-full-stack
 ```
 
 ## How to run the project
-Clone this repo on your local machine and install the node package manager using the following command:
+1. Clone this repo on your local machine  
+
+2. Navigate to the project: 
+```bash 
+cd blogapi-full-stack
+```
+
+3. Install the dependencies using node package manager:
 ```bash
 npm install
 ```
 
-After this you can run the project by using the following command:
+4. Run the project in development:
 ```bash
 npm run dev
 ```
 
-This will run the frontend and backend simulataneously. 
-Navigate to 
+5. Run the frontend and backend simulataneously:
 ```bash
 localhost:<port_number>
 ```
 
-If you want to test the backend with postman you can use 
+6. If you want to test the backend with postman you can send your requests to:
 ```bash
 localhost:3000/
 ```
-to send your requests
 
 ## Backend Model
 ![Model](/BackendModel.png)
