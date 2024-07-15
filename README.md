@@ -1,5 +1,7 @@
 # Blog 
 
+_Date: Jul 2024_
+
 **CURRENTLY IN DEVELOPMENT**
 
 ## Description 

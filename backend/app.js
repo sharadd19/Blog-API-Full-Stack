@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./config/mongoDB");
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -15,7 +16,7 @@ const { error } = require("console");
 const app = express();
 
 /* --------------------------DATABASE------------------------------- */
-
+/* 
 var mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
@@ -23,7 +24,7 @@ mongoose.set("strictQuery", false);
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(process.env.MONGODB_URL);
-}
+} */
 
 /* -------------------------MIDDLEWARE----------------------------- */
 app.set('trust proxy', 1)
