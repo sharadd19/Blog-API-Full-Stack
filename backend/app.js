@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("./config/mongoDB");
+require("./config/mongoDBConfig");
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -62,7 +62,7 @@ app.use(cors(
   origin: 'http://localhost:5173'  // Your frontend URL - allows us to access the api from this port and share resources between frontend and backend
 } */));
 // AUTHENTICATION
-require("./config/passport")
+require("./config/passportConfig")
 app.use(passport.initialize())
 
 
