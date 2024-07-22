@@ -6,42 +6,19 @@ import Post from "./components/Post/Post";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import SignUp from "./components/SignUp/SignUp";
-import { Link } from "react-router-dom";
-
+import { Link, useLoaderData } from "react-router-dom";
+//import { useGlobalContext } from "./contexts/GlobalContext";
 function App() {
-  const [user, setUser] = useState();
-  const [blogPosts, setBlogPosts] = useState([]);
+  //const { loading } = useGlobalContext();
 
-  const API = import.meta.env.VITE_API;
-
-  async function getBlogPosts() {
-    try {
-      const url = `${API}/api/home`;
-      console.log("Fetching from URL:", url);
-      const response = await fetch(url, { mode: "cors" });
-      console.log("Response status:", response.status);
-      const text = await response.text();
-      return JSON.parse(text);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
-  useEffect(() => {
-    getBlogPosts().then((data) => {
-      const user = data.user;
-      const postList = data.postList;
-      setUser(user);
-      setBlogPosts(postList);
-    });
-  }, []);
+  const data = useLoaderData();
+  console.log(data);
+  const { user, postList } = data;
 
   const isUserLoggedIn = user ? true : false;
 
-  console.log(user);
-  console.log(blogPosts);
   return (
     <div className={styles.container}>
-
       <div className={styles.header}>
         <div className={styles.title}>
           <h1>BrainBlog</h1>
@@ -57,17 +34,20 @@ function App() {
       </div>
 
       <div className={styles.welcome}>
-        {isUserLoggedIn ? <h1>Welcome back {user}! </h1> : null}
+        {isUserLoggedIn ? <h1>Welcome back {user.username}! </h1> : null}
       </div>
 
       <div className={styles.postGrid}>
-        {blogPosts.map((post) => (
-          <div key={post._id} className={styles.post}>
-            <Post post={post} isUserLoggedIn={isUserLoggedIn} />
-          </div>
-        ))}
+        {postList.length > 0 ? (
+          postList.map((post) => (
+            <div key={post._id} className={styles.post}>
+              <Post post={post} isUserLoggedIn={isUserLoggedIn} />
+            </div>
+          ))
+        ) : (
+          <p>No blog posts available.</p>
+        )}
       </div>
-      
     </div>
   );
 }

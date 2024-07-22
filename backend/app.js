@@ -15,17 +15,6 @@ const { error } = require("console");
 
 const app = express();
 
-/* --------------------------DATABASE------------------------------- */
-/* 
-var mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-
-
-main().catch((err) => console.log(err));
-async function main() {
-  await mongoose.connect(process.env.MONGODB_URL);
-} */
-
 /* -------------------------MIDDLEWARE----------------------------- */
 app.set('trust proxy', 1)
 
@@ -58,9 +47,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors(
-  /* {
+  {
   origin: 'http://localhost:5173'  // Your frontend URL - allows us to access the api from this port and share resources between frontend and backend
-} */));
+}));
 // AUTHENTICATION
 require("./config/passportConfig")
 app.use(passport.initialize())

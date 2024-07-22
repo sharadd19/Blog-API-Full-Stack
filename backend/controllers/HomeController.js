@@ -108,9 +108,8 @@ exports.login = asyncHandler(async (req, res) => {
       success: true,
       message: "User logged in!!",
       token: userJWT.token,
-      expires: userJWT.expires,
-      redirectTo: "/api/home",
-    });
+      expires: userJWT.expires
+      });
   } else {
     res
       .status(401)

@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+Form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+button {
+    
+    width: 100px;
+    align-items: flex-start;
+}
+
+.username, .password {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
