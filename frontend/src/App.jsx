@@ -7,9 +7,9 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import SignUp from "./components/SignUp/SignUp";
 import { Link, useLoaderData } from "react-router-dom";
-//import { useGlobalContext } from "./contexts/GlobalContext";
+import { useGlobalContext } from "./contexts/GlobalContext";
 function App() {
-  //const { loading } = useGlobalContext();
+  const { loading } = useGlobalContext();
 
   const data = useLoaderData();
   console.log(data);
@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div className={styles.container}>
+      {loading && <h3>Loading...</h3>}
       <div className={styles.header}>
         <div className={styles.title}>
           <h1>BrainBlog</h1>
@@ -45,7 +46,8 @@ function App() {
             </div>
           ))
         ) : (
-          <p>No blog posts available.</p>
+          <p>There are no blog posts.</p>
+
         )}
       </div>
     </div>

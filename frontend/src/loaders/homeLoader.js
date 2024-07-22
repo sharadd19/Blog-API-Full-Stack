@@ -1,12 +1,12 @@
-//import { useGlobalContext } from "../contexts/GlobalContext";
+import { useGlobalContext } from "../contexts/GlobalContext";
 
 export default async function homeLoader() {
     const API = import.meta.env.VITE_API;
     const token = localStorage.getItem("token");
-  //  const { setLoadingState } = useGlobalContext();
+    const { setLoadingState } = useGlobalContext();
 
     try {
-      //setLoadingState(true)
+      setLoadingState(true)
       const url = `${API}/home`;
       const response = await fetch(url, {
         mode: "cors",
@@ -21,6 +21,6 @@ export default async function homeLoader() {
       throw new Response("Failed to fetch blog posts", { status: 500 });
     }
     finally {
-     // setLoadingState(false)
+     setLoadingState(false)
     }
   }
