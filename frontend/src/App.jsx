@@ -4,54 +4,136 @@ import styles from "./App.module.css";
 import { useState, useEffect } from "react";
 import Post from "./components/Post/Post";
 import Login from "./components/Login/Login";
-import Logout from "./components/Logout/Logout";
 import SignUp from "./components/SignUp/SignUp";
-import { Link, useLoaderData } from "react-router-dom";
-import { useGlobalContext } from "./contexts/GlobalContext";
+import { Link, useLoaderData, redirect } from "react-router-dom";
+// import { useGlobalContext } from "./contexts/GlobalContext";
 function App() {
-  const { loading } = useGlobalContext();
+  // const { loading } = useGlobalContext();
+  const [user, setUser] = useState();
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const data = useLoaderData();
-  console.log(data);
-  const { user, postList } = data;
+  const token = localStorage.getItem("token");
+  const API = import.meta.env.VITE_API;
+  async function getBlogPosts() {
+    try {
+      setLoading(true);
+      const url = `${API}/home`;
+      console.log("Fetching from URL:", url);
+      const response = await fetch(url, {
+        mode: "cors",
+        headers: {
+          Authorization: token ? token : null,
+        },
+      });
+      console.log("Response status:", response.status);
+      return response.json();
+    } catch (error) {
+      throw new Response("Failed to fetch blog posts", { status: 500 });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function logout() {
+    try {
+      setLoading(true);
+      const url = `${API}/logout`;
+      console.log("Fetching from URL:", url);
+      const response = await fetch(url, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          Authorization: token ? token : null,
+        },
+      });
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Response(data.message, { status: response.status });
+      }
+
+      if (data.success) {
+        localStorage.removeItem("token");
+        setUser(null);
+        redirect("/");
+      }
+    } catch (error) {
+      if (error instanceof Response) {
+        throw error; // Re-throw if it's already a Response
+      } else {
+        // For other errors, create a new Response
+        throw new Response(error.message || "An unexpected error occurred", {
+          status: 500,
+          statusText: "Internal Server Error",
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getBlogPosts().then((data) => {
+      const user = data.user;
+      const postList = data.postList;
+      setUser(user);
+      setBlogPosts(postList);
+    });
+  }, []);
+  //const data = useLoaderData();
+  //const { user, postList } = data;
 
   const isUserLoggedIn = user ? true : false;
 
-  return (
-    <div className={styles.container}>
-      {loading && <h3>Loading...</h3>}
-      <div className={styles.header}>
-        <div className={styles.title}>
-          <h1>BrainBlog</h1>
-        </div>
-        {isUserLoggedIn ? (
-          <Link to="/logout">Logout</Link>
-        ) : (
-          <div className={styles.links}>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <h2>Loading...</h2>
+      </div>
+    );
+  } else if (blogPosts.length === 0) {
+    <div className={styles.noPosts}>
+      <h2>There are no blog posts.</h2>
+    </div>;
+  } else {
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.title}>
+            <h1>BrainBlog</h1>
           </div>
-        )}
-      </div>
-
-      <div className={styles.welcome}>
-        {isUserLoggedIn ? <h1>Welcome back {user.username}! </h1> : null}
-      </div>
-
-      <div className={styles.postGrid}>
-        {postList.length > 0 ? (
-          postList.map((post) => (
-            <div key={post._id} className={styles.post}>
-              <Post post={post} isUserLoggedIn={isUserLoggedIn} />
+          {isUserLoggedIn ? (
+            <button
+              className={styles.logout}
+              onClick={() => logout()}
+              type="button"
+            >
+              Logout
+            </button>
+          ) : (
+      
+            <div className={styles.links}>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
             </div>
-          ))
-        ) : (
-          <p>There are no blog posts.</p>
+          )}
+        </div>
 
-        )}
+        <div className={styles.welcome}>
+          {isUserLoggedIn ? <h1>Welcome back {user.username}! </h1> : null}
+        </div>
+
+        <div className={styles.postGrid}>
+          {blogPosts.map((post) => (
+            <div key={post._id} className={styles.post}>
+              <Post post={post} user={user} isUserLoggedIn={isUserLoggedIn} />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

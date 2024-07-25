@@ -124,13 +124,12 @@ exports.login = asyncHandler(async (req, res) => {
 exports.logout = (req, res) => {
   req.logout((err) => {
     if (err) {
-      return res.json({ success: false, message: "Error!" });
+      return res.json({ success: false, message: "Error logging out!" });
       //return next(err);
     } else {
       return res.status(200).json({
         success: true,
         message: "You have logged out!",
-        redirectTo: "/api/home",
       });
     }
   });

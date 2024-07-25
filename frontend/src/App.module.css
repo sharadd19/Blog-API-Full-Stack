@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+
 }
 
 .header {
@@ -39,4 +40,13 @@
 
 .post:hover {
   transform: scale(1.05);
+}
+
+.loading, .noPosts{  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This makes the container full height of the viewport */
+  text-align: center; /* This ensures inline content is centered */
+
 }
