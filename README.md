@@ -53,29 +53,55 @@ blogapi-full-stack
 ## How to run the project
 1. Clone this repo on your local machine  
 
-2. Navigate to the project: 
+2. Navigate to the project and install dependencies using node package manager: 
 ```bash 
 cd blogapi-full-stack
-```
-
-3. Install dependencies using node package manager:
-```bash
 npm install
 ```
 
-4. Run the project in development:
+3. Install dependencies for the frontend
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+4. Install dependencies for the backend
+```bash
+cd backend
+npm install
+cd ..
+```
+
+5. You will need to create a MongoDB database and get the connection string before proceeding. Create a collection for users, posts and comments.
+
+6. Create a .env file in the frontend AND the backend
+```bash
+# Frontend - we want our frontend to communicate with our backend api so we need to ues the API's URL
+# .env(frontend)
+VITE_API = http://localhost:<port_number>/api # port number is usually 3000 for the backend
+
+# Backend - fill in the empty strings with whatever you want
+# .env (backend)
+MONGODB_URL = "<connection_string>"
+JWT_SECRET = ""
+SESSION_SECRET = ""
+ADMIN_SECRET = ""
+```
+
+7. Run the project in development:
 ```bash
 npm run dev
 ```
 
-5. Run the frontend and backend simulataneously:
+8. Navigate to the browser and enter the following in the URL:
 ```bash
-localhost:<port_number>
+localhost:<port_number> # port number is usually 5173 for the frontend
 ```
 
-6. If you want to test the backend with postman you can send your requests to:
+9. If you want to test the backend with Postman you can send your requests to:
 ```bash
-localhost:3000/
+localhost:<port_number> # port number is usually 3000 for the backend
 ```
 
 ## Backend Model
