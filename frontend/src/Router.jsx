@@ -10,16 +10,17 @@ import ErrorPage from "./ErrorPage";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import loginAction from "./actions/loginAction";
-
+import signUpAction from "./actions/signUpAction";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path="/" element={<App />} errorElement={<ErrorPage />} />
       <Route
-        path="/"
-        element={<App />}
+        path="/signup"
+        element={<SignUp />}
+        action={signUpAction}
         errorElement={<ErrorPage />}
       />
-      <Route path="/signup" element={<SignUp />} />
       <Route
         path="/login"
         element={<Login />}

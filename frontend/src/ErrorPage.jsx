@@ -1,5 +1,5 @@
-import { useRouteError } from "react-router-dom";
-
+import { useRouteError, useNavigate } from "react-router-dom";
+import styles from "./ErrorPage.module.css";
 export default function ErrorPage() {
   const error = useRouteError();
 
@@ -16,6 +16,7 @@ export default function ErrorPage() {
     errorMessage = error.data;
     errorStatus = error.status;
   }
+  const navigate = useNavigate();
 
   return (
     <div id="error-page">
@@ -24,6 +25,9 @@ export default function ErrorPage() {
       <p>
         <i>{errorMessage}</i>
       </p>
+      <button className={styles.back} onClick={() => navigate(-1)}>
+            Back{" "}
+          </button>
     </div>
   );
 }

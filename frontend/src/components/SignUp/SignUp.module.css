@@ -16,3 +16,21 @@
 .back:focus-visible {
   outline: none;
 }
+
+.signup {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.firstName, .lastName, .username, .password, .confirmPassword {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
