@@ -7,10 +7,11 @@ export default function SignUp() {
       <h1>Create your account!</h1>
 
       <div className={styles.wrapper}>
-        <Form method="post">
-          <button className={styles.back} onClick={() => navigate(-1)}>
+      <button className={styles.back} onClick={() => navigate(-1)}>
             Back{" "}
           </button>
+        <Form method="post">
+          
           <div className={styles.firstName}>
             <label htmlFor="firstName">First Name:</label>
             <input type="text" name="firstName" />
@@ -31,9 +32,7 @@ export default function SignUp() {
             <label htmlFor="confirmPassword">Confirm Password:</label>
             <input type="password" name="confirmPassword" />
           </div>
-          <button type="submit" disabled={navigation.state === "submitting"}>
-            {navigation.state === "submitting" ? "Creating Account..." : "Create Account"}
-          </button>
+          <button type="submit"> Create Account</button>
         </Form>
         <div className={styles.signup}>
           or

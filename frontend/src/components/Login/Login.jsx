@@ -6,8 +6,9 @@ export default function Login() {
     <>
       <h1>Login</h1>
       <div className={styles.wrapper}>
+      <button className={styles.back} onClick={() => navigate(-1)}>Back </button>
         <Form method="post">
-          <button className={styles.back} onClick={() => navigate(-1)}>Back </button>
+          
 
           <div className={styles.username}>
             <label htmlFor="username">Username:</label>
@@ -17,8 +18,8 @@ export default function Login() {
             <label htmlFor="password">Password:</label>
             <input type="password" name="password" />
           </div>
-          <button type="submit" disabled={navigation.state === "submitting"}>
-            {navigation.state === "submitting" ? "Logging in..." : "Login"}
+          <button type="submit">
+            Login
           </button>
         </Form>
         <div className={styles.signup}>

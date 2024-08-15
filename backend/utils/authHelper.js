@@ -2,6 +2,13 @@ require("dotenv").config();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
+// I want to be able to create a comment if I am logged in AND not logged in.
+// If I am logged in, I want to leave my author details in the comment and if not then leave it blank
+// For the first scenario I need to be authenticated to have my user details attached to the req.user object so I can populate the author property of the comment
+// This means protecting the route 
+// If the route for creating a comment is protected then it means I can only create a comment if I am logged in and authenticated
+// So we need a way to authenticate without requiring a login
+// This is what checkJWT does - it checks for a token which would be supplied if you are logged in, but ignores if you are not and continues to the controller anyway
 exports.checkJWT = (req, res, next) => {
   // Check to see if there is a token, if there is then remove the bearer part of it
   const token = req.header("Authorization")?.replace("Bearer ", "");

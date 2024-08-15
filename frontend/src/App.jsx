@@ -81,8 +81,6 @@ function App() {
       setBlogPosts(postList);
     });
   }, []);
-  //const data = useLoaderData();
-  //const { user, postList } = data;
 
   const isUserLoggedIn = user ? true : false;
 
@@ -112,7 +110,6 @@ function App() {
               Logout
             </button>
           ) : (
-      
             <div className={styles.links}>
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
@@ -121,7 +118,12 @@ function App() {
         </div>
 
         <div className={styles.welcome}>
-          {isUserLoggedIn ? <h1>Welcome back {user.username}! </h1> : null}
+          {isUserLoggedIn ? (
+            <div>
+              <h1>Welcome {user.username}! </h1>
+              <Link to="/createPostForm"> Create Post</Link>
+            </div>
+          ) : null}
         </div>
 
         <div className={styles.postGrid}>

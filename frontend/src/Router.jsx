@@ -11,6 +11,9 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import loginAction from "./actions/loginAction";
 import signUpAction from "./actions/signUpAction";
+import createPostAction from "./actions/createPostAction";
+//import Post from "./components/Post/Post";
+import PostForm from "./components/Post/PostForm";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -27,6 +30,16 @@ const router = createBrowserRouter(
         action={loginAction}
         errorElement={<ErrorPage />}
       />
+      <Route
+      path="/createPostForm"
+      element={<PostForm/>}
+      action={createPostAction}
+      errorElement={<ErrorPage/>}
+      />
+      {/* <Route path="/post" element={<Post />}>
+        <Route path="/post/edit" element={<EditPost />} />
+      </Route> */}
+
       <Route path="*" element={<ErrorPage />} />
     </>
   )
