@@ -1,5 +1,5 @@
 import { Form, Link, useNavigate } from "react-router-dom";
-import styles from "../Post/Post.module.css";
+import styles from "../Post/PostForm.module.css";
 export default function PostForm() {
   const navigate = useNavigate();
   return (

@@ -12,8 +12,10 @@ import SignUp from "./components/SignUp/SignUp";
 import loginAction from "./actions/loginAction";
 import signUpAction from "./actions/signUpAction";
 import createPostAction from "./actions/createPostAction";
-//import Post from "./components/Post/Post";
+import ViewPost from "./components/Post/ViewPost";
 import PostForm from "./components/Post/PostForm";
+import EditPost from "./components/Post/EditPost";
+import postLoader from "./loaders/postLoader";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -36,9 +38,9 @@ const router = createBrowserRouter(
       action={createPostAction}
       errorElement={<ErrorPage/>}
       />
-      {/* <Route path="/post" element={<Post />}>
-        <Route path="/post/edit" element={<EditPost />} />
-      </Route> */}
+      <Route path="/post/:postId" loader={postLoader} element={<ViewPost />}>
+        <Route path="/post/:postId/edit" element={<EditPost />} />
+      </Route>
 
       <Route path="*" element={<ErrorPage />} />
     </>

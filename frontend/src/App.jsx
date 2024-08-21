@@ -15,6 +15,7 @@ function App() {
 
   const token = localStorage.getItem("token");
   const API = import.meta.env.VITE_API;
+  
   async function getBlogPosts() {
     try {
       setLoading(true);
@@ -125,11 +126,21 @@ function App() {
             </div>
           ) : null}
         </div>
-
+          
         <div className={styles.postGrid}>
           {blogPosts.map((post) => (
             <div key={post._id} className={styles.post}>
-              <Post post={post} user={user} isUserLoggedIn={isUserLoggedIn} />
+              <Link to={`/post/${post._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Post post={post} isUserLoggedIn={isUserLoggedIn} />
+                {
+                user && user._id === post.author._id && ( // We need to check that there is a user, and that the user is the author of the post
+                  <div className={styles.buttonGroup}>
+                    <Link>Edit</Link>
+                    <button>Delete</button>
+                  </div>
+                )
+                }
+              </Link>
             </div>
           ))}
         </div>

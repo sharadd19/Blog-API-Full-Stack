@@ -4,7 +4,7 @@ const PostController = require("../controllers/PostController");
 const {isAuth, checkJWT} = require("../utils/authHelper")
 
 
-router.get("/:id", PostController.getPost);
+router.get("/:id", checkJWT, PostController.getPost);
 
 router.post("/", isAuth, PostController.createPost)
 

@@ -1,9 +1,5 @@
-import styles from "../Post/Post.module.css"
-export default function Post({ post, user, isUserLoggedIn }) {
-  let userIsAuthor;
-  if (user) {
-    userIsAuthor = post.author._id === user._id ? true : false;
-  }
+export default function Post({ post, isUserLoggedIn }) {
+  
 
   return (
     <>
@@ -14,12 +10,6 @@ export default function Post({ post, user, isUserLoggedIn }) {
         <p style={{ fontStyle: "italic" }}>
           {isUserLoggedIn ? post.author.username : null}
         </p>
-        {userIsAuthor && (
-          <div className={styles.buttonGroup}>
-            <button>Edit</button> 
-            <button>Delete</button>
-          </div>
-        )}
       </div>
     </>
   );

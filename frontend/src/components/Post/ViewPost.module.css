@@ -1,0 +1,31 @@
+.back {
+    display: flex;
+    justify-content: flex-start;
+    background: none;
+    border: none;
+    color: #646cff;
+    margin: 0;
+    padding: 0;
+    text-decoration: underline;
+  }
+  
+  .back:hover {
+    color: #535bf2;
+  }
+  
+  .back:focus,
+  .back:focus-visible {
+    outline: none;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: center;
+  }
+  

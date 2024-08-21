@@ -17,6 +17,7 @@ exports.getPost = asyncHandler(async (req, res) => {
   return res.json({
     success: true,
     post: post,
+    user: req.user ? req.user : null
   });
 });
 
