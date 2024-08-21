@@ -6,7 +6,7 @@ export default function PostForm() {
   const postDetails = post.post;
   const data  = useParams();
   const postId = data.postId;
-  let formTitle 
+  let formTitle;
   
   formTitle = postId ? "Edit Post" : "New Post"
   return (

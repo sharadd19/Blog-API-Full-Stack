@@ -1,17 +1,19 @@
-import { redirect } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 
-export default async function createOrUpdatePostAction({ request }) {
+export default async function createOrUpdatePostAction({ request, params }) {
   const API = import.meta.env.VITE_API;
   const formData = await request.formData();
   const title = formData.get("title");
   const description = formData.get("description");
   const token = localStorage.getItem("token");
-
+  debugger;
+  const { postId } = params;
+  const verb = postId ? "PUT" : "POST"
+  const url = postId ? `${API}/post/${postId}` : `${API}/post/` 
   try {
    debugger;
-    const url = `${API}/post/`;
     const response = await fetch(url, {
-      method: "POST",
+      method: verb,
       headers: {
         "Content-Type": "application/json",
         Authorization: token ? token : null

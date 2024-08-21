@@ -135,7 +135,7 @@ function App() {
                 {
                 user && user._id === post.author._id && ( // We need to check that there is a user, and that the user is the author of the post
                   <div className={styles.buttonGroup}>
-                    <Link>Edit</Link>
+                    <Link to={`/post/${post._id}/edit`}>Edit</Link>
                     <button>Delete</button>
                   </div>
                 )
