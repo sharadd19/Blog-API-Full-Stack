@@ -6,7 +6,7 @@ export default function ViewPost() {
   const data = useLoaderData();
   const post = data.post;
   const user = data.user;
-debugger
+
   let userIsAuthor;
   if (user) {
     userIsAuthor = post.author._id === user._id ? true : false;
@@ -18,7 +18,7 @@ debugger
       </button>
       {userIsAuthor && (( // We need to check that there is a user, and that the user is the author of the post
                   <div className={styles.buttonGroup}>
-                    <Link>Edit</Link>
+                    <Link to={`/post/${post._id}/edit`}>Edit</Link>
                     <button>Delete</button>
                   </div>
                 ))}

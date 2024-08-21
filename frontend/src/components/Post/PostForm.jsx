@@ -1,24 +1,31 @@
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, useNavigate, useLoaderData, useParams } from "react-router-dom";
 import styles from "../Post/PostForm.module.css";
 export default function PostForm() {
   const navigate = useNavigate();
+  const post = useLoaderData();
+  const postDetails = post.post;
+  const data  = useParams();
+  const postId = data.postId;
+  let formTitle 
+  
+  formTitle = postId ? "Edit Post" : "New Post"
   return (
     <>
-      <h1>New Post</h1>
+      <h1>{formTitle}</h1>
       <div className={styles.wrapper}>
         <button className={styles.back} onClick={() => navigate(-1)}>
           Back{" "}
         </button>
-        <Form method="post">
+        <Form method="post" action={postId ? `/post/${postId}/edit` :  `/post`}>
           <div className={styles.title}>
             <label htmlFor="title">Title:</label>
-            <input type="text" name="title" />
+            <input type="text" name="title" defaultValue={postDetails?.title || ""} />
           </div>
           <div className={styles.description}>
             <label htmlFor="description">Description:</label>
-            <textarea name="description" />
+            <textarea name="description" defaultValue={postDetails?.description || ""}/>
           </div>
-          <button type="submit">Create Post</button>
+          <button type="submit">{formTitle}</button>
         </Form>
       </div>
     </>

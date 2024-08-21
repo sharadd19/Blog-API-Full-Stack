@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 
-export default async function createPostAction({ request }) {
+export default async function createOrUpdatePostAction({ request }) {
   const API = import.meta.env.VITE_API;
   const formData = await request.formData();
   const title = formData.get("title");
@@ -10,7 +10,6 @@ export default async function createPostAction({ request }) {
   try {
    debugger;
     const url = `${API}/post/`;
-    debugger;
     const response = await fetch(url, {
       method: "POST",
       headers: {

@@ -122,7 +122,7 @@ function App() {
           {isUserLoggedIn ? (
             <div>
               <h1>Welcome {user.username}! </h1>
-              <Link to="/createPostForm"> Create Post</Link>
+              <Link to={`/post`}> Create Post</Link>
             </div>
           ) : null}
         </div>

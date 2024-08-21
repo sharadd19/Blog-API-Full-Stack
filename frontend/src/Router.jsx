@@ -11,11 +11,12 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import loginAction from "./actions/loginAction";
 import signUpAction from "./actions/signUpAction";
-import createPostAction from "./actions/createPostAction";
+import createOrUpdatePostAction from "./actions/createOrUpdatePostAction";
 import ViewPost from "./components/Post/ViewPost";
 import PostForm from "./components/Post/PostForm";
 import EditPost from "./components/Post/EditPost";
-import postLoader from "./loaders/postLoader";
+import postFormLoader from "./loaders/postFormLoader";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -33,14 +34,15 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
       />
       <Route
-      path="/createPostForm"
+      path="/post"
+      loader={postFormLoader}
       element={<PostForm/>}
-      action={createPostAction}
+      action={createOrUpdatePostAction}
       errorElement={<ErrorPage/>}
       />
-      <Route path="/post/:postId" loader={postLoader} element={<ViewPost />}>
-        <Route path="/post/:postId/edit" element={<EditPost />} />
-      </Route>
+      <Route path="/post/:postId" loader={postFormLoader} element={<ViewPost />}/>
+        
+      <Route path="/post/:postId/edit" loader={postFormLoader} action={createOrUpdatePostAction} element={<PostForm />} />
 
       <Route path="*" element={<ErrorPage />} />
     </>
