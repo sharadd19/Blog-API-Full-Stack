@@ -31,6 +31,7 @@ an account, login and access protected routes depending on permissions
 - I used Postman to simulate a client and had to think differenly when it came to creating the API endpoints that my frontend would eventually use. This meant being more thoughtful about what I would be sending in the response. 
 - Figuring out how to get my frontend and backend to communicate when an API is involved. I used CORS to allow my backend to be accessed from a different domain
 - Configuring my application so that one command can run both the frontend and backend simulutaneously
+- Creating custom middleware to verify a user's JWT without requiring them to log in. The goal was to allow users to leave comments on posts with or without a username. Users with accounts should be able to leave a username if authenticated, while users without accounts should still be able to comment without authentication. Protecting the route for authenticated users would have blocked non-account users, so a solution was needed to handle both cases dynamically.
 
 
 
